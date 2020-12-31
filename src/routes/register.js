@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
   // check if email exists in the database or not
   try {
     const userExists = await client.query(
-      "SELECT email from users_credentials WHERE email = $1",
+      "SELECT user_email from users_credentials WHERE user_email = $1",
       [email]
     );
     if (userExists.rows[0] !== undefined) {
@@ -35,14 +35,14 @@ router.post("/", async (req, res) => {
 
   // register user in the database
   try {
-      await client.query('INSERT INTO users_credentials (email,user_password) VALUES($1, $2)', ([email,hashedPassword]))
+      await client.query('INSERT INTO users_credentials (user_email,user_password) VALUES($1, $2)', ([email,hashedPassword]))
       res.json('Registered Successfully')
     } catch (error) {
         console.log(error);
     }
     // add user_id and username into user_data table
     try {
-        const userID = await (await client.query("SELECT user_id FROM users_credentials WHERE email = $1", [email])).rows[0].user_id
+        const userID = await (await client.query("SELECT user_id FROM users_credentials WHERE user_email = $1", [email])).rows[0].user_id
         await client.query('INSERT INTO users_data (user_id, user_name) VALUES ($1, $2)', [userID, username])
         
     } catch (error) {
