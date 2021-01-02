@@ -8,11 +8,13 @@ app.use(express.json())
 //importing routes
 const registerRoute = require('./routes/register')
 const loginRoute = require('./routes/login')
-
+const forgotPasswordRoute = require('./routes/forgotPassword')
+const updatePasswordRoute = require('./routes/updatePassword')
 
 app.use('/register', registerRoute)
 app.use('/login', loginRoute)
-
+app.use('/forgotpassword', forgotPasswordRoute)
+app.use('/updatepassword', updatePasswordRoute)
 
 
 
