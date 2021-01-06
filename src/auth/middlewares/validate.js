@@ -11,19 +11,22 @@ const registerSchema = Joi.object({
 const loginSchema = Joi.object({
   email: Joi.string().max(255).required().email(),
   password: Joi.string().min(6).max(1024).required(),
+  rememberMe: Joi.bool().required(),
 });
 //Forgot Password Request Validation
 const forgotPasswordSchema = Joi.object({
   email: Joi.string().max(255).required().email(),
 });
 
-//Update PAssword Request Validation
+//Update Password Request Validation
 const updatePasswordSchema = Joi.object({
   password: Joi.string().min(6).max(255).required(),
   confirmPassword: Joi.any().valid(Joi.ref("password")).required(),
 });
 
-module.exports.registerSchema = registerSchema;
-module.exports.loginSchema = loginSchema;
-module.exports.forgotPasswordSchema = forgotPasswordSchema;
-module.exports.updatePasswordSchema = updatePasswordSchema;
+module.exports = {
+  registerSchema,
+  loginSchema,
+  forgotPasswordSchema,
+  updatePasswordSchema,
+};

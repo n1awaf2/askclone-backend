@@ -2,7 +2,7 @@ const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 const passwordValidator = require('../middlewares/validate').updatePasswordSchema
 const bcrypt = require('bcrypt')
-const client = require('../db')
+const client = require("../../db");
 router.put('/:resetToken', async (req,res)=>{
 
 //grab the token from url params, verify it and extract userId and Email from it

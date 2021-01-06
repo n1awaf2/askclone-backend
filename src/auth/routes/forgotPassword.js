@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const emailValidator = require("../middlewares/validate").forgotPasswordSchema;
-const client = require("../db");
+const client = require("../../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 router.post("/", async (req, res) => {
