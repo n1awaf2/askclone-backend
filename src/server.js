@@ -21,10 +21,10 @@ app.use("/auth/verifyemail", verifyEmail);
 
 //QUESTION AND ANSWERS ROUTES
 const addQuestionRoute = require('./questionsAndAnswers/routes/addQuestion')
-
+const getQuestionsRoute = require('./questionsAndAnswers/routes/getQuestions')
 ///////////////////////////////////////////////////////////////////////////////
 app.use('/question/addquestion', addQuestionRoute)
-
+app.use('/questions/getquestions', getQuestionsRoute)
 
 app.listen(4000, () => {
   console.log("listening on port 4000");

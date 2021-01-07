@@ -53,12 +53,12 @@ router.post("/", async (req, res) => {
         process.env.REFRESH_TOKEN_SECRET + hashedPassword,
         { expiresIn }
       );
-      return res.json({ accessToken, refreshToken, username });
+      return res.json(['logged in', { accessToken, refreshToken, username }]);
     } else {
-      return res.json("either email or password is incorrect");
+      return res.json(["either email or password is incorrect"]);
     }
   } catch (error) {
-    return res.json("error");
+    return res.json(["error"]);
   }
 });
 
