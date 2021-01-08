@@ -9,7 +9,7 @@ const refreshToken = res.get("refresh-token");
         refreshToken,
         username
     }
-    res.json(['Question sent successfully', userObject])
+    res.status(200).json(['succeeded', userObject])
 }
 
 module.exports = tokenSender
