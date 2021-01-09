@@ -20,15 +20,17 @@ app.use("/auth/verifyemail", verifyEmail);
 //END OD AUTH ROUTES
 
 //QUESTION AND ANSWERS ROUTES
-const addQuestionRoute = require('./questionsAndAnswers/routes/addQuestion')
+const askYourselfRoute = require('./questionsAndAnswers/routes/askYourself')
 const getQuestionsRoute = require('./questionsAndAnswers/routes/getQuestions')
 const getOneQuestionRoute = require('./questionsAndAnswers/routes/getOneQuestion')
 const deleteQuestionRoute = require('./questionsAndAnswers/routes/deleteQuestion')
+const addAnswerRoute = require('./questionsAndAnswers/routes/addAnswer')
 ///////////////////////////////////////////////////////////////////////////////
-app.use('/question/addquestion', addQuestionRoute)
+app.use('/question/askyourself', askYourselfRoute)
 app.use('/questions/getquestions', getQuestionsRoute)
 app.use('/questions/getquestion', getOneQuestionRoute)
 app.use('/questions/deletequestion', deleteQuestionRoute)
+app.use('/questions/addanswer', addAnswerRoute)
 app.listen(4000, () => {
   console.log("listening on port 4000");
 });
