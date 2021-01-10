@@ -21,16 +21,22 @@ app.use("/auth/verifyemail", verifyEmail);
 
 //QUESTION AND ANSWERS ROUTES
 const askYourselfRoute = require('./questionsAndAnswers/routes/askYourself')
+const askAnotherUserRoute = require('./questionsAndAnswers/routes/askAnotherUser')
 const getQuestionsRoute = require('./questionsAndAnswers/routes/getQuestions')
 const getOneQuestionRoute = require('./questionsAndAnswers/routes/getOneQuestion')
 const deleteQuestionRoute = require('./questionsAndAnswers/routes/deleteQuestion')
 const addAnswerRoute = require('./questionsAndAnswers/routes/addAnswer')
+const getAnswersRoute = require('./questionsAndAnswers/routes/getAnswers')
+const getYourAnsweresRoute = require('./questionsAndAnswers/routes/getYourAnswers')
 ///////////////////////////////////////////////////////////////////////////////
 app.use('/question/askyourself', askYourselfRoute)
 app.use('/questions/getquestions', getQuestionsRoute)
 app.use('/questions/getquestion', getOneQuestionRoute)
 app.use('/questions/deletequestion', deleteQuestionRoute)
 app.use('/questions/addanswer', addAnswerRoute)
+app.use('/questions/getanswers', getAnswersRoute)
+app.use('/questions/getyouranswers', getYourAnsweresRoute)
+app.use('/questions/askquestion', askAnotherUserRoute)
 app.listen(4000, () => {
   console.log("listening on port 4000");
 });
