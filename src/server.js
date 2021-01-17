@@ -28,6 +28,8 @@ const deleteQuestionRoute = require('./questionsAndAnswers/routes/deleteQuestion
 const addAnswerRoute = require('./questionsAndAnswers/routes/addAnswer')
 const getAnswersRoute = require('./questionsAndAnswers/routes/getAnswers')
 const getYourAnsweresRoute = require('./questionsAndAnswers/routes/getYourAnswers')
+const addLikeRoute = require('./questionsAndAnswers/routes/addLike')
+const removeLikeRoute = require('./questionsAndAnswers/routes/removeLike')
 ///////////////////////////////////////////////////////////////////////////////
 app.use('/question/askyourself', askYourselfRoute)
 app.use('/questions/getquestions', getQuestionsRoute)
@@ -37,6 +39,13 @@ app.use('/questions/addanswer', addAnswerRoute)
 app.use('/questions/getanswers', getAnswersRoute)
 app.use('/questions/getyouranswers', getYourAnsweresRoute)
 app.use('/questions/askquestion', askAnotherUserRoute)
+app.use('/questions/addlike', addLikeRoute)
+app.use('/questions/removelike', removeLikeRoute)
+
+///////////////////////////////////////////////////////////////////////////////
+const imageUploadRoute = require('./uploadimage')
+app.use('/upload/image', imageUploadRoute)
+
 app.listen(4000, () => {
   console.log("listening on port 4000");
 });

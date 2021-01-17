@@ -3,12 +3,13 @@ const protect = require('../../auth/middlewares/protect')
 const client = require('../../db')
 router.delete('/:questionid', protect, async (req,res)=>{
 const questionId = req.params.questionid
-const userId = req.user
+const tokenSender = require("../helpers/tokenSender");
+
     try {
         await client.query('DELETE FROM questions WHERE question_id = $1', [questionId])
 
         if (res.get("isrefreshed") === "true") {
-            tokenSender(userId, res);
+            tokenSender(res);
           } else {
             res.json(["Deleted Successfully"]);
           }
