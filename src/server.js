@@ -4,7 +4,7 @@ const app = express();
 require("dotenv").config();
 app.use(cors());
 app.use(express.json());
-
+app.use('/images', express.static('./images'))
 //AUTH ROUTES
 const registerRoute = require("./auth/routes/register");
 const loginRoute = require("./auth/routes/login");

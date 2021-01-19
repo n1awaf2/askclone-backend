@@ -10,12 +10,12 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const checkUserFolder = fs.existsSync(`./images/${req.user}`);
     if (!checkUserFolder) {
-      fs.mkdir(`./images/${req.user}`, (err) => {
+      fs.mkdirSync(`./images/${req.user}`, (err) => {
           if(err){console.log(err)}
       });
     }
     const newImageFolder = uuidv4();
-    fs.mkdir(`./images/${req.user}/${newImageFolder}`, (err) => {
+    fs.mkdirSync(`./images/${req.user}/${newImageFolder}`, (err) => {
         if(err){console.log(err)}
     });
     cb(null, `./${req.user}/${newImageFolder}/${file.originalname}`);
@@ -27,16 +27,16 @@ const upload = multer({
 }).single("image");
 
 router.post("/", protect, (req, res) => {
-  upload(req, res, (err) => {
+ upload(req, res, (err) => {
     if (err) {
       console.log(err);
       res.status(400).json("Error uploading");
     } else {
-        const payload = req.file.path 
+      const payload = req.file.path;
       if (res.get("isrefreshed") === "true") {
         tokenSender(res, payload);
       } else {
-        res.status(200).json({message: 'uploaded successfully', payload});
+        res.status(200).json({ message: 'uploaded successfully', payload });
       }
 
     }

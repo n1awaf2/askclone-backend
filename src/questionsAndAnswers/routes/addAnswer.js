@@ -6,11 +6,12 @@ const tokenSender = require("../helpers/tokenSender");
 router.put("/:questionid", protect, async (req, res) => {
   const questionId = req.params.questionid;
   const answer = req.body.answer;
+  const imagePath = req.body.imagePath
 
   try {
     await client.query(
-      "UPDATE questions SET answer = $1, answered_date=$2 WHERE question_id = $3 AND answer IS NULL",
-      [answer, new Date(), questionId]
+      "UPDATE questions SET answer = $1, answered_date=$2, answer_image=$3 WHERE question_id = $4 AND answer IS NULL",
+      [answer, new Date(), imagePath, questionId]
     );
 
     if (res.get("isrefreshed") === "true") {
