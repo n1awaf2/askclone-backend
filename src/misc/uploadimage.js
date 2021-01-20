@@ -1,9 +1,9 @@
 const multer = require("multer");
 const router = require("express").Router();
-const protect = require("./auth/middlewares/protect");
+const protect = require("../auth/middlewares/protect");
 const fs = require("fs");
 const uuidv4 = require("uuid").v4;
-const tokenSender = require("./questionsAndAnswers/helpers/tokenSender");
+const tokenSender = require("../questionsAndAnswers/helpers/tokenSender");
 
 const storage = multer.diskStorage({
   destination: "./images/",
