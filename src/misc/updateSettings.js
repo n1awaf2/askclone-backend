@@ -26,7 +26,7 @@ router.post("/", protect, async (req, res) => {
 
   if(email != null){
       try {
-          client.query('UPDATE users_credentials SET user_email = $1, is_verified = $2 WHERE user_id = $3',[email, false, userId])
+          client.query('UPDATE users_credentials SET user_email = $1, WHERE user_id = $2',[email, userId])
       } catch (error) {
         console.log(error);
         return res.status(400).json('Error')

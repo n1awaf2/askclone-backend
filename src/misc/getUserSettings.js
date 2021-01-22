@@ -9,7 +9,7 @@ router.get('/', protect, async(req,res)=>{
         const data = (await client.query('SELECT * from users_data JOIN users_credentials ON users_credentials.user_id = $1 AND users_data.user_id = $1 ', [userId])).rows[0]
         delete data.user_password
         delete data.password_reset_token
-
+        if(data.user_birthday !== null){data.user_birthday = data.user_birthday.toISOString().substring(0, 10)}
         if (res.get("isrefreshed") === "true") {
             tokenSender(res, data);
           } else {
