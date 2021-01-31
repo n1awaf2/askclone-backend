@@ -52,6 +52,15 @@ app.use('/upload/image', imageUploadRoute)
 app.use('/user/settings', updateSettingsRoute)
 app.use('/user/getsettings', getUserSettingsRoute)
 app.use('/user/getuserandimage', getUserNameAndImageRoute)
+
+///////////////////////////////////////////////////////////////////////////////
+const followRoute = require('./following/routes/follow')
+const unfollowRoute = require('./following/routes/unfollow')
+
+app.use('/follow', followRoute)
+app.use('/unfollow', unfollowRoute)
+///////////////////////////////////////////////////////////////////////////////
+
 app.listen(4000, () => {
   console.log("listening on port 4000");
 });
