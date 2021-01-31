@@ -2,7 +2,7 @@ const router = require("express").Router();
 const client = require('../../db')
 const protect = require("../../auth/middlewares/protect");
 
-router.post("/:followedid", protect, async (req, res) => {
+router.delete("/:followedid", protect, async (req, res) => {
     const followerId = req.user;
     const followedId = req.params.followedid;
 
