@@ -14,7 +14,7 @@ const loginSchema = Joi.object({
   rememberMe: Joi.bool().required(),
 });
 //Forgot Password Request Validation
-const forgotPasswordSchema = Joi.object({
+const emailValidator = Joi.object({
   email: Joi.string().max(255).required().email(),
 });
 
@@ -27,6 +27,6 @@ const updatePasswordSchema = Joi.object({
 module.exports = {
   registerSchema,
   loginSchema,
-  forgotPasswordSchema,
+  emailValidator,
   updatePasswordSchema,
 };

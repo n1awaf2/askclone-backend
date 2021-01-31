@@ -1,10 +1,18 @@
 const router = require("express").Router();
 const protect = require("../auth/middlewares/protect");
 const client = require("../db");
-const tokenSender = require('../questionsAndAnswers/helpers/tokenSender')
+const emailValidator = require('../auth/middlewares/validate').emailValidator
+const tokenSender = require("../questionsAndAnswers/helpers/tokenSender");
 router.post("/", protect, async (req, res) => {
   const userId = req.user;
-  const { name, birthday, location, gender, bio, imagePath ,email} = req.body;
+  const { name, birthday, location, gender, bio, imagePath, email } = req.body;
+  //Validate Email
+  try {
+    emailValidator.validateAsync(req.body);
+    console.log("email validated");
+  } catch (error) {
+    return res.json("Please enter a valid email");
+  }
   //write to users_data
   try {
     await client.query(
@@ -20,25 +28,25 @@ router.post("/", protect, async (req, res) => {
       [name, birthday, location, gender, bio, imagePath, userId]
     );
   } catch (error) {
-      console.log(error);
-      return res.status(400).json('Error')
+    console.log(error);
+    return res.status(400).json("Error");
   }
 
-  if(email != null){
-      try {
-          client.query('UPDATE users_credentials SET user_email = $1, WHERE user_id = $2',[email, userId])
-      } catch (error) {
-        console.log(error);
-        return res.status(400).json('Error')
-      }
+  try {
+    client.query(
+      "UPDATE users_credentials SET user_email = $1, WHERE user_id = $2",
+      [email, userId]
+    );
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json("Error");
   }
 
   if (res.get("isrefreshed") === "true") {
     tokenSender(res);
   } else {
-    res.status(200).json({ message: 'updated successfully'});
+    res.status(200).json({ message: "updated successfully" });
   }
-
 });
 
 module.exports = router;

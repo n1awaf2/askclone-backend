@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const emailValidator = require("../middlewares/validate").forgotPasswordSchema;
+const emailValidator = require("../middlewares/validate").emailValidator;
 const client = require("../../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
