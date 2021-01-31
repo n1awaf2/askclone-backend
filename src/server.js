@@ -46,11 +46,12 @@ app.use('/questions/removelike', removeLikeRoute)
 const imageUploadRoute = require('./misc/uploadimage')
 const updateSettingsRoute = require('./misc/updateSettings')
 const getUserSettingsRoute = require('./misc/getUserSettings')
-const getUserImageRoute = require('./misc/getUserImage')
+const getUserNameAndImageRoute = require('./misc/getUserNameAndImage')
+
 app.use('/upload/image', imageUploadRoute)
 app.use('/user/settings', updateSettingsRoute)
 app.use('/user/getsettings', getUserSettingsRoute)
-app.use('/user/getimage', getUserImageRoute)
+app.use('/user/getuserandimage', getUserNameAndImageRoute)
 app.listen(4000, () => {
   console.log("listening on port 4000");
 });
