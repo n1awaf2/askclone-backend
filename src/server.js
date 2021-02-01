@@ -30,6 +30,7 @@ const getAnswersRoute = require('./questionsAndAnswers/routes/getAnswers')
 const getYourAnsweresRoute = require('./questionsAndAnswers/routes/getYourAnswers')
 const addLikeRoute = require('./questionsAndAnswers/routes/addLike')
 const removeLikeRoute = require('./questionsAndAnswers/routes/removeLike')
+const removeAnswerRoute = require('./questionsAndAnswers/routes/removeAnswer')
 ///////////////////////////////////////////////////////////////////////////////
 app.use('/question/askyourself', askYourselfRoute)
 app.use('/questions/getquestions', getQuestionsRoute)
@@ -41,7 +42,7 @@ app.use('/questions/getyouranswers', getYourAnsweresRoute)
 app.use('/questions/askquestion', askAnotherUserRoute)
 app.use('/questions/addlike', addLikeRoute)
 app.use('/questions/removelike', removeLikeRoute)
-
+app.use('/questions/removeAnswer', removeAnswerRoute)
 ///////////////////////////////////////////////////////////////////////////////
 const imageUploadRoute = require('./misc/uploadimage')
 const updateSettingsRoute = require('./misc/updateSettings')
