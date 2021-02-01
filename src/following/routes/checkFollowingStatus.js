@@ -17,7 +17,7 @@ router.get("/:followedid", protect, async (req, res) => {
     }
     res.status(200).json("success");
   } catch (error) {
-    res.status(400).json("User 1 isn't following user 2");
+    res.status(200).json("User 1 isn't following user 2");
   }
 });
 
