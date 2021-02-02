@@ -58,10 +58,13 @@ app.use('/user/getuserandimage', getUserNameAndImageRoute)
 const followRoute = require('./following/routes/follow')
 const unfollowRoute = require('./following/routes/unfollow')
 const checkFollowStatusRoute = require('./following/routes/checkFollowingStatus')
+const getFollowingRoute = require('./following/routes/getFollowing')
 
 app.use('/follow', followRoute)
 app.use('/unfollow', unfollowRoute)
 app.use('/checkfollow', checkFollowStatusRoute)
+app.use('/getfollowing', getFollowingRoute)
+
 ///////////////////////////////////////////////////////////////////////////////
 
 app.listen(4000, () => {
