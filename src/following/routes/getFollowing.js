@@ -29,6 +29,7 @@ router.get("/", protect, async (req, res) => {
       console.log(error);
       res.status(400).json('Error')
   }
+  
 });
 
 module.exports = router;
