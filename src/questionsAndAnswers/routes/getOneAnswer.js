@@ -8,10 +8,11 @@ router.get("/:answerid", protect, async (req, res) => {
   try {
     const data = (
       await client.query(
-        "SELECT * FROM questions WHERE question_id = $1 AND answer IS NOT NULL",
+        "SELECT question_id, sender_id, reciever_id, answer, question, is_anonymous, asked_date, answered_date, liked_by, answer_image, user_name, user_image  FROM questions INNER JOIN users_data ON questions.sender_id = users_data.user_id WHERE questions.question_id = $1 AND answer IS NOT NULL",
         [answerId]
       )
     ).rows[0];
+    console.log(data);
     if (data === undefined) {
       throw new Error("this question has no answer");
     }
