@@ -8,7 +8,7 @@ router.post("/", protect, async (req, res) => {
   const { name, birthday, location, gender, bio, imagePath, email } = req.body;
   //Validate Email
   try {
-    emailValidator.validateAsync(req.body);
+    emailValidator.validateAsync({email});
     console.log("email validated");
   } catch (error) {
     return res.json("Please enter a valid email");
@@ -34,7 +34,7 @@ router.post("/", protect, async (req, res) => {
 
   try {
     client.query(
-      "UPDATE users_credentials SET user_email = $1, WHERE user_id = $2",
+      "UPDATE users_credentials SET user_email = $1 WHERE user_id = $2",
       [email, userId]
     );
   } catch (error) {

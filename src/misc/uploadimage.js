@@ -32,7 +32,7 @@ router.post("/", protect, (req, res) => {
       console.log(err);
       res.status(400).json("Error uploading");
     } else {
-      const payload = req.file.path;
+      const payload = req.file.path.replace(/\\/g, "/").substring("".length);
       if (res.get("isrefreshed") === "true") {
         tokenSender(res, payload);
       } else {
