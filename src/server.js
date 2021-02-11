@@ -58,12 +58,15 @@ const imageUploadRoute = require("./misc/uploadimage");
 const updateSettingsRoute = require("./misc/updateSettings");
 const getUserSettingsRoute = require("./misc/getUserSettings");
 const getUserNameAndImageRoute = require("./misc/getUserNameAndImage");
+const getNotificationsRoute = require('./misc/getNotifications');
+const markNotificationReadRoute = require('./misc/markNotificationRead')
 
 app.use("/upload/image", imageUploadRoute);
 app.use("/user/settings", updateSettingsRoute);
 app.use("/user/getsettings", getUserSettingsRoute);
 app.use("/user/getuserandimage", getUserNameAndImageRoute);
-
+app.use('/users/notifications', getNotificationsRoute)
+app.use('/users/marknotificationread', markNotificationReadRoute)
 ///////////////////////////////////////////////////////////////////////////////
 const followRoute = require("./following/routes/follow");
 const unfollowRoute = require("./following/routes/unfollow");

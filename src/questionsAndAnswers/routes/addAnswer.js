@@ -9,10 +9,16 @@ router.put("/:questionid", protect, async (req, res) => {
   const imagePath = req.body.imagePath
 
   try {
-    await client.query(
-      "UPDATE questions SET answer = $1, answered_date=$2, answer_image=$3 WHERE question_id = $4 AND answer IS NULL",
+    const data = (await client.query(
+      "UPDATE questions SET answer = $1, answered_date=$2, answer_image=$3 WHERE question_id = $4 AND answer IS NULL RETURNING sender_id AS notification_reciever, reciever_id AS notification_sender",
       [answer, new Date(), imagePath, questionId]
-    );
+    )).rows[0];
+      const notificationReciever = data.notification_reciever
+      const notificationSender = data.notification_sender
+    await client.query('INSERT INTO notifications (notification_type, notification_sender, notification_reciever, question_id,notification_date) VALUES ($1, $2, $3, $4,$5)', ['Answer', notificationSender, notificationReciever, questionId, new Date()])
+    global.connectedUsers[notificationReciever].forEach((id) => {
+      global.io.to(id).emit("answer", "U got a new Answer");
+    });
 
     if (res.get("isrefreshed") === "true") {
       tokenSender(res);

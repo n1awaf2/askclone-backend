@@ -7,7 +7,7 @@ const tokenSender = require("../helpers/tokenSender");
 
     try {
         await client.query('DELETE FROM questions WHERE question_id = $1', [questionId])
-
+        await client.query('DELETE FROM notifications WHERE question_id = $1', [questionId])
         if (res.get("isrefreshed") === "true") {
             tokenSender(res);
           } else {
