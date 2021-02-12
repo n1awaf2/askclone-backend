@@ -19,12 +19,15 @@ const loginRoute = require("./auth/routes/login");
 const forgotPasswordRoute = require("./auth/routes/forgotPassword");
 const updatePasswordRoute = require("./auth/routes/updatePassword");
 const verifyEmail = require("./auth/routes/verifyEmail");
+const logoutRoute = require('./auth/routes/logout')
 ///////////////////////////////////////////////////////////////////////////////
 app.use("/auth/register", registerRoute);
 app.use("/auth/login", loginRoute);
 app.use("/auth/forgotpassword", forgotPasswordRoute);
 app.use("/auth/updatepassword", updatePasswordRoute);
 app.use("/auth/verifyemail", verifyEmail);
+app.use("/auth/logout", logoutRoute);
+
 //END OD AUTH ROUTES
 
 //QUESTION AND ANSWERS ROUTES
