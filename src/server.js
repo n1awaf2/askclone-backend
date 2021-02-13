@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const server = require("http").createServer(app);
+const helmet = require("helmet");
 const io = require('socket.io')(server, {
   cors: {
     origin: "http://localhost:3000",
@@ -12,6 +13,7 @@ const io = require('socket.io')(server, {
 require("dotenv").config();
 app.use(cors());
 app.use(express.json());
+app.use(helmet());
 app.use("/images", express.static("./images"));
 //AUTH ROUTES
 const registerRoute = require("./auth/routes/register");
